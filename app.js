@@ -4,7 +4,8 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-require("dotenv").config();
+
+require("dotenv").config({ path: "./config.env" });
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -14,7 +15,8 @@ const app = express();
 
 const ID = process.env.USER_ID;
 const PWD = process.env.USER_KEY;
-
+// console.log({ env: process.env });
+console.log({ ID, PWD });
 const mongoDB = `mongodb+srv://${ID}:${PWD}@cluster0.g6umq.mongodb.net/local_library?retryWrites=true&w=majority`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
